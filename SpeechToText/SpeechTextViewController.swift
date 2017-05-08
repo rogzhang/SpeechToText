@@ -9,10 +9,10 @@
 import UIKit
 import Speech
 
-class ViewController: UIViewController, SFSpeechRecognizerDelegate {
+class SpeechTextViewController: UIViewController, SFSpeechRecognizerDelegate {
 
-    @IBOutlet weak var textView: UITextView!
-    @IBOutlet weak var microphoneButton: UIButton!
+    @IBOutlet weak var textView: UITextView?
+    @IBOutlet weak var microphoneButton: UIButton?
     
     private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US"))!
     
@@ -23,7 +23,7 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        microphoneButton.isEnabled = false
+        microphoneButton?.isEnabled = false
         
         speechRecognizer.delegate = self
         
@@ -49,7 +49,7 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
             }
             
             OperationQueue.main.addOperation() {
-                self.microphoneButton.isEnabled = isButtonEnabled
+                self.microphoneButton?.isEnabled = isButtonEnabled
             }
         }
     }
@@ -88,7 +88,7 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
             
             if result != nil {
                 
-                self.textView.text = result?.bestTranscription.formattedString
+                self.textView?.text = result?.bestTranscription.formattedString
                 isFinal = (result?.isFinal)!
             }
             
@@ -99,7 +99,7 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
                 self.recognitionRequest = nil
                 self.recognitionTask = nil
                 
-                self.microphoneButton.isEnabled = true
+                self.microphoneButton?.isEnabled = true
             }
         })
         
@@ -116,15 +116,15 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
             print("audioEngine couldn't start because of an error.")
         }
         
-        textView.text = "I am listening!"
+        textView?.text = "I am listening!"
         
     }
     
     func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
         if available {
-            microphoneButton.isEnabled = true
+            microphoneButton?.isEnabled = true
         } else {
-            microphoneButton.isEnabled = false
+            microphoneButton?.isEnabled = false
         }
     }
     
@@ -132,13 +132,13 @@ class ViewController: UIViewController, SFSpeechRecognizerDelegate {
         if audioEngine.isRunning {
             audioEngine.stop()
             recognitionRequest?.endAudio()
-            microphoneButton.isEnabled = false
-            microphoneButton.setTitle("Start Recording", for: .normal)
-            microphoneButton.setTitleColor(UIColor.blue, for: .normal)
+            microphoneButton?.isEnabled = false
+            microphoneButton?.setTitle("Start Recording", for: .normal)
+            microphoneButton?.setTitleColor(UIColor.blue, for: .normal)
         } else {
             startRecording()
-            microphoneButton.setTitle("Stop Recording", for: .normal)
-            microphoneButton.setTitleColor(UIColor.red, for: .normal)
+            microphoneButton?.setTitle("Stop Recording", for: .normal)
+            microphoneButton?.setTitleColor(UIColor.red, for: .normal)
         }
     }
 }
