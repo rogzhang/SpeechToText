@@ -302,6 +302,7 @@
 				E510ACA91EBFB94C003F36C5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
