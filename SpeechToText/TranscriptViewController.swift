@@ -12,11 +12,14 @@ class TranscriptViewController: UIViewController, UITableViewDataSource, UITable
 
     @IBOutlet weak var table: UITableView?
     
-    private var transcripts = [String]()
+    private var transcripts: [String] = []
     
     private var selectedRow: Int = -1
     
     var newRowText: String = ""
+    
+    static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
+    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("notes")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +28,10 @@ class TranscriptViewController: UIViewController, UITableViewDataSource, UITable
         
         self.title = "Notes"
         
-        table!.estimatedRowHeight = table!.rowHeight
-        table!.rowHeight = UITableViewAutomaticDimension
+        if let rowHeight = table?.rowHeight {
+            table?.estimatedRowHeight = rowHeight
+            table?.rowHeight = UITableViewAutomaticDimension
+        }
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNote))
         self.navigationItem.rightBarButtonItem = addButton
@@ -49,7 +54,7 @@ class TranscriptViewController: UIViewController, UITableViewDataSource, UITable
         save()
     }
     
-    func insertNote(_ newNote: String, _ indexPath: IndexPath) {
+    private func insertNote(_ newNote: String, _ indexPath: IndexPath) {
         transcripts.insert(newNote, at: 0)
         table?.insertRows(at: [indexPath], with: .automatic)
     }
@@ -104,10 +109,20 @@ class TranscriptViewController: UIViewController, UITableViewDataSource, UITable
     
     // MARK: - Saving
     
-    func save() {
+    private func save() {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(transcripts, toFile: TranscriptViewController.ArchiveURL.path)
+        if isSuccessfulSave {
+            print("Transcript archives were saved")
+        } else {
+            print("Transcript archives were not successfully saved")
+        }
     }
     
-    func load() {
+    private func load() {
+        if let loadedData = NSKeyedUnarchiver.unarchiveObject(withFile: TranscriptViewController.ArchiveURL.path) as? [String] {
+            transcripts = loadedData
+            table?.reloadData()
+        }
     }
 
     // MARK: - Navigation

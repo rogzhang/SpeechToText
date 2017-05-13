@@ -13,61 +13,65 @@ class SpeechTextViewController: UIViewController, SFSpeechRecognizerDelegate {
 
     @IBOutlet weak var textView: UITextView? {
         didSet {
-            setText(with: "")
+            textView?.text = ""
         }
     }
     
     @IBOutlet weak var microphoneButton: UIButton?
+    
+    var text: String = "" {
+        didSet {
+            textView?.text = text
+        }
+    }
     
     var masterView: TranscriptViewController!
     
     private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US"))!
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     private var recognitionTask: SFSpeechRecognitionTask?
-    
     private let audioEngine = AVAudioEngine()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.automaticallyAdjustsScrollViewInsets = false
         
         microphoneButton?.isEnabled = false
         
         speechRecognizer.delegate = self
         
         SFSpeechRecognizer.requestAuthorization { (authStatus) in
-            
-            var isButtonEnabled = false
-            
-            switch authStatus {
-            case .authorized:
-                isButtonEnabled = true
-                
-            case .denied:
-                isButtonEnabled = false
-                print("User denied access to speech recognition")
-                
-            case .restricted:
-                isButtonEnabled = false
-                print("Speech recognition restricted on this device")
-                
-            case .notDetermined:
-                isButtonEnabled = false
-                print("Speech recognition not yet authorized")
-            }
-            
             OperationQueue.main.addOperation() {
+                var isButtonEnabled = false
+                
+                switch authStatus {
+                    case .authorized:
+                        isButtonEnabled = true
+                        
+                    case .denied:
+                        isButtonEnabled = false
+                        print("User denied access to speech recognition")
+                        
+                    case .restricted:
+                        isButtonEnabled = false
+                        print("Speech recognition restricted on this device")
+                        
+                    case .notDetermined:
+                        isButtonEnabled = false
+                        print("Speech recognition not yet authorized")
+                }
                 self.microphoneButton?.isEnabled = isButtonEnabled
             }
         }
+        textView?.text = text
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        masterView.newRowText = textView!.text
-    }
-    
-    func setText(with noteText: String) {
-        textView?.text = noteText
+        if let text = textView?.text {
+            masterView.newRowText = text
+        }
     }
     
     private func startRecording() {
@@ -131,6 +135,12 @@ class SpeechTextViewController: UIViewController, SFSpeechRecognizerDelegate {
             print("audioEngine couldn't start because of an error.")
         }
     }
+    
+    func setText(with noteText: String) {
+        text = noteText
+    }
+    
+    // MARK: -- speech recognition delegate
     
     func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
         if available {
