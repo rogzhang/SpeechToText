@@ -8,20 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		E510AC991EBFB94C003F36C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E510AC981EBFB94C003F36C5 /* AppDelegate.swift */; };
-		E510AC9B1EBFB94C003F36C5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E510AC9A1EBFB94C003F36C5 /* ViewController.swift */; };
+		E510AC9B1EBFB94C003F36C5 /* SpeechTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E510AC9A1EBFB94C003F36C5 /* SpeechTextViewController.swift */; };
 		E510AC9E1EBFB94C003F36C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E510AC9C1EBFB94C003F36C5 /* Main.storyboard */; };
 		E510ACA01EBFB94C003F36C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E510AC9F1EBFB94C003F36C5 /* Assets.xcassets */; };
 		E510ACA31EBFB94C003F36C5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E510ACA11EBFB94C003F36C5 /* LaunchScreen.storyboard */; };
+		E5D857751EC54BEB009515C0 /* TranscriptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D857741EC54BEB009515C0 /* TranscriptViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		E510AC951EBFB94C003F36C5 /* SpeechToText.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpeechToText.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E510AC981EBFB94C003F36C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E510AC9A1EBFB94C003F36C5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E510AC9A1EBFB94C003F36C5 /* SpeechTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechTextViewController.swift; sourceTree = "<group>"; };
 		E510AC9D1EBFB94C003F36C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E510AC9F1EBFB94C003F36C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E510ACA21EBFB94C003F36C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E510ACA41EBFB94C003F36C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E5D857741EC54BEB009515C0 /* TranscriptViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TranscriptViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,8 +57,9 @@
 			isa = PBXGroup;
 			children = (
 				E510AC981EBFB94C003F36C5 /* AppDelegate.swift */,
-				E510AC9A1EBFB94C003F36C5 /* ViewController.swift */,
+				E510AC9A1EBFB94C003F36C5 /* SpeechTextViewController.swift */,
 				E510AC9C1EBFB94C003F36C5 /* Main.storyboard */,
+				E5D857741EC54BEB009515C0 /* TranscriptViewController.swift */,
 				E510AC9F1EBFB94C003F36C5 /* Assets.xcassets */,
 				E510ACA11EBFB94C003F36C5 /* LaunchScreen.storyboard */,
 				E510ACA41EBFB94C003F36C5 /* Info.plist */,
@@ -137,7 +140,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E510AC9B1EBFB94C003F36C5 /* ViewController.swift in Sources */,
+				E510AC9B1EBFB94C003F36C5 /* SpeechTextViewController.swift in Sources */,
+				E5D857751EC54BEB009515C0 /* TranscriptViewController.swift in Sources */,
 				E510AC991EBFB94C003F36C5 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
