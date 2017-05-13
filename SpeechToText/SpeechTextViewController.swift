@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  SpeechTextViewController.swift
 //  SpeechToText
 //
 //  Created by Roger Zhang on 2017-05-07.
@@ -11,13 +11,20 @@ import Speech
 
 class SpeechTextViewController: UIViewController, SFSpeechRecognizerDelegate {
 
-    @IBOutlet weak var textView: UITextView?
+    @IBOutlet weak var textView: UITextView? {
+        didSet {
+            setText(with: "")
+        }
+    }
+    
     @IBOutlet weak var microphoneButton: UIButton?
     
-    private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US"))!
+    var masterView: TranscriptViewController!
     
+    private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US"))!
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     private var recognitionTask: SFSpeechRecognitionTask?
+    
     private let audioEngine = AVAudioEngine()
     
     override func viewDidLoad() {
@@ -54,7 +61,16 @@ class SpeechTextViewController: UIViewController, SFSpeechRecognizerDelegate {
         }
     }
     
-    func startRecording() {
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        masterView.newRowText = textView!.text
+    }
+    
+    func setText(with noteText: String) {
+        textView?.text = noteText
+    }
+    
+    private func startRecording() {
         
         if recognitionTask != nil {
             recognitionTask?.cancel()
@@ -87,9 +103,8 @@ class SpeechTextViewController: UIViewController, SFSpeechRecognizerDelegate {
             var isFinal = false
             
             if result != nil {
-                
-                self.textView?.text = result?.bestTranscription.formattedString
-                isFinal = (result?.isFinal)!
+                self.setText(with: result!.bestTranscription.formattedString)
+                isFinal = result!.isFinal
             }
             
             if error != nil || isFinal {
@@ -115,9 +130,6 @@ class SpeechTextViewController: UIViewController, SFSpeechRecognizerDelegate {
         } catch {
             print("audioEngine couldn't start because of an error.")
         }
-        
-        textView?.text = "I am listening!"
-        
     }
     
     func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
@@ -142,4 +154,3 @@ class SpeechTextViewController: UIViewController, SFSpeechRecognizerDelegate {
         }
     }
 }
-
