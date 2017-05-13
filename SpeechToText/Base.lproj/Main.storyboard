@@ -38,13 +38,13 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="leadingMargin" secondItem="lWT-4b-1Ma" secondAttribute="leading" id="1Hk-By-Vvp"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="lWT-4b-1Ma" secondAttribute="trailing" id="2WR-lj-VQR"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="2Fm-Z9-Bqd" secondAttribute="trailing" id="9Ob-Nb-qhw"/>
-                            <constraint firstItem="lWT-4b-1Ma" firstAttribute="top" secondItem="2Fm-Z9-Bqd" secondAttribute="bottom" constant="8" symbolic="YES" id="RUO-Wu-oFq"/>
-                            <constraint firstItem="2Fm-Z9-Bqd" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="TFk-fj-iF1"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="2Fm-Z9-Bqd" secondAttribute="leading" id="rTH-Nc-Wtd"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="lWT-4b-1Ma" secondAttribute="bottom" constant="8" symbolic="YES" id="tZo-Bj-Nkk"/>
+                            <constraint firstItem="2Fm-Z9-Bqd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="1uJ-lW-SJA"/>
+                            <constraint firstItem="2Fm-Z9-Bqd" firstAttribute="leading" secondItem="lWT-4b-1Ma" secondAttribute="leading" id="DcZ-4C-slx"/>
+                            <constraint firstItem="2Fm-Z9-Bqd" firstAttribute="trailing" secondItem="lWT-4b-1Ma" secondAttribute="trailing" id="W36-88-iys"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="lWT-4b-1Ma" secondAttribute="bottom" constant="8" symbolic="YES" id="fgQ-Et-6PN"/>
+                            <constraint firstItem="2Fm-Z9-Bqd" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="kg0-Bk-tq5"/>
+                            <constraint firstItem="2Fm-Z9-Bqd" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="koG-1E-nfL"/>
+                            <constraint firstItem="lWT-4b-1Ma" firstAttribute="top" secondItem="2Fm-Z9-Bqd" secondAttribute="bottom" constant="8" symbolic="YES" id="wMS-GS-spf"/>
                         </constraints>
                     </view>
                     <connections>
