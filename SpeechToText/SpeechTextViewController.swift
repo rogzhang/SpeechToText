@@ -150,6 +150,8 @@ class SpeechTextViewController: UIViewController, SFSpeechRecognizerDelegate {
         }
     }
     
+    // MARK: -- microphone button action
+    
     @IBAction func microphoneTapped(_ sender: UIButton) {
         if audioEngine.isRunning {
             audioEngine.stop()

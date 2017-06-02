@@ -12,6 +12,9 @@
 		E510AC9E1EBFB94C003F36C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E510AC9C1EBFB94C003F36C5 /* Main.storyboard */; };
 		E510ACA01EBFB94C003F36C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E510AC9F1EBFB94C003F36C5 /* Assets.xcassets */; };
 		E510ACA31EBFB94C003F36C5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E510ACA11EBFB94C003F36C5 /* LaunchScreen.storyboard */; };
+		E57C338F1EE0823C0065FF34 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E57C338D1EE0823C0065FF34 /* Model.xcdatamodeld */; };
+		E57C33951EE085BF0065FF34 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57C33941EE085BF0065FF34 /* CoreDataStack.swift */; };
+		E57C339A1EE085CD0065FF34 /* DataLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57C33961EE085CD0065FF34 /* DataLayer.swift */; };
 		E5D857751EC54BEB009515C0 /* TranscriptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D857741EC54BEB009515C0 /* TranscriptViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +26,9 @@
 		E510AC9F1EBFB94C003F36C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E510ACA21EBFB94C003F36C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E510ACA41EBFB94C003F36C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E57C338E1EE0823C0065FF34 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		E57C33941EE085BF0065FF34 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		E57C33961EE085CD0065FF34 /* DataLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataLayer.swift; sourceTree = "<group>"; };
 		E5D857741EC54BEB009515C0 /* TranscriptViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TranscriptViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -56,7 +62,10 @@
 		E510AC971EBFB94C003F36C5 /* SpeechToText */ = {
 			isa = PBXGroup;
 			children = (
+				E57C33941EE085BF0065FF34 /* CoreDataStack.swift */,
+				E57C33961EE085CD0065FF34 /* DataLayer.swift */,
 				E510AC981EBFB94C003F36C5 /* AppDelegate.swift */,
+				E57C338D1EE0823C0065FF34 /* Model.xcdatamodeld */,
 				E510AC9A1EBFB94C003F36C5 /* SpeechTextViewController.swift */,
 				E510AC9C1EBFB94C003F36C5 /* Main.storyboard */,
 				E5D857741EC54BEB009515C0 /* TranscriptViewController.swift */,
@@ -140,9 +149,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E57C33951EE085BF0065FF34 /* CoreDataStack.swift in Sources */,
+				E57C339A1EE085CD0065FF34 /* DataLayer.swift in Sources */,
 				E510AC9B1EBFB94C003F36C5 /* SpeechTextViewController.swift in Sources */,
 				E5D857751EC54BEB009515C0 /* TranscriptViewController.swift in Sources */,
 				E510AC991EBFB94C003F36C5 /* AppDelegate.swift in Sources */,
+				E57C338F1EE0823C0065FF34 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,6 +321,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E57C338D1EE0823C0065FF34 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E57C338E1EE0823C0065FF34 /* Model.xcdatamodel */,
+			);
+			currentVersion = E57C338E1EE0823C0065FF34 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = E510AC8D1EBFB94C003F36C5 /* Project object */;
 }
