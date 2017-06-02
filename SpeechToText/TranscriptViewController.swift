@@ -14,17 +14,14 @@ class TranscriptViewController: UIViewController, UITableViewDataSource, UITable
     
     private var transcripts: [String] = []
     
+    var dataLayer = DataLayer()
+    
     private var selectedRow: Int = -1
     
     var newRowText: String = ""
     
-    static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
-    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("notes")
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         
         self.title = "Notes"
         
@@ -37,7 +34,8 @@ class TranscriptViewController: UIViewController, UITableViewDataSource, UITable
         self.navigationItem.rightBarButtonItem = addButton
         self.navigationItem.leftBarButtonItem = editButtonItem
         
-        load()
+        transcripts = dataLayer.fetchData()
+        table?.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,19 +43,19 @@ class TranscriptViewController: UIViewController, UITableViewDataSource, UITable
         if selectedRow == -1 {
             return
         }
+        let oldTranscript = transcripts[selectedRow]
         transcripts[selectedRow] = newRowText
         if newRowText == "" {
             transcripts.remove(at: selectedRow)
+        } else {
+            dataLayer.deleteData(with: oldTranscript)
+            dataLayer.saveData(with: newRowText)
         }
+        print(dataLayer.numberOfResults)
         table?.reloadData()
-        
-        save()
     }
     
-    private func insertNote(_ newNote: String, _ indexPath: IndexPath) {
-        transcripts.insert(newNote, at: 0)
-        table?.insertRows(at: [indexPath], with: .automatic)
-    }
+    // MARK: - add note button action
     
     @objc private func addNote() {
         let newNote = ""
@@ -69,10 +67,10 @@ class TranscriptViewController: UIViewController, UITableViewDataSource, UITable
         
         self.performSegue(withIdentifier: "note", sender: nil)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    private func insertNote(_ newNote: String, _ indexPath: IndexPath) {
+        transcripts.insert(newNote, at: 0)
+        table?.insertRows(at: [indexPath], with: .automatic)
     }
     
     // MARK: - Table view data source
@@ -89,9 +87,9 @@ class TranscriptViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        transcripts.remove(at: indexPath.row)
+        let removed = transcripts.remove(at: indexPath.row)
+        dataLayer.deleteData(with: removed)
         table?.deleteRows(at: [indexPath], with: .fade)
-        save()
     }
     
     // MARK: - Table view delegate
@@ -100,29 +98,11 @@ class TranscriptViewController: UIViewController, UITableViewDataSource, UITable
         self.performSegue(withIdentifier: "note", sender: nil)
     }
     
-    // MARK: - Editing
+    // MARK: - View controller / navigation Editing
     
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         table?.setEditing(editing, animated: animated)
-    }
-    
-    // MARK: - Saving
-    
-    private func save() {
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(transcripts, toFile: TranscriptViewController.ArchiveURL.path)
-        if isSuccessfulSave {
-            print("Transcript archives were saved")
-        } else {
-            print("Transcript archives were not successfully saved")
-        }
-    }
-    
-    private func load() {
-        if let loadedData = NSKeyedUnarchiver.unarchiveObject(withFile: TranscriptViewController.ArchiveURL.path) as? [String] {
-            transcripts = loadedData
-            table?.reloadData()
-        }
     }
 
     // MARK: - Navigation
